@@ -1,0 +1,45 @@
+{
+ "SoundBanksInfo": {
+  "Platform": "Mac",
+  "BasePlatform": "Mac",
+  "SchemaVersion": "16",
+  "SoundBankVersion": "154",
+  "SoundBanks": [
+   {
+    "Id": "3989171651",
+    "Type": "User",
+    "GUID": "{E33000D6-9C48-40F5-A0D1-F0641B5F4FB9}",
+    "Language": "SFX",
+    "Hash": "{D791DF37-775E-1A48-06C8-FC9544DF0A0C}",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\Main_Bank",
+    "ShortName": "Main_Bank",
+    "Path": "Main_Bank.bnk",
+    "Media": [
+     {
+      "Id": "971792626",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "sketch_for_game.wav",
+      "CachePath": "2C/{2CFB6899-A878-EEAD-5DB0-53A78D57308A}.wem"
+     }
+    ],
+    "Events": [
+     {
+      "Id": "1732673776",
+      "Name": "Play_Audio",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_Audio",
+      "GUID": "{35B4A62E-E2D1-4FCB-9BD1-E1E7373AA6D3}",
+      "DurationType": "Infinite",
+      "MediaRefs": [
+       {
+        "Id": "971792626"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "FileHash": "{C83E8665-FE70-3B17-D978-C2E0ACF10436}"
+ }
+}

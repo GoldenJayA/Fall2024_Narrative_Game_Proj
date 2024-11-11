@@ -1,0 +1,6 @@
+Event	ID	Name			Wwise Object Path	Notes
+	1732673776	Play_Audio			\Default Work Unit\Play_Audio	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	971792626	Audio_test	C:\Users\angel\OneDrive\Desktop\Grad Fall 2024\Game Audio Final\Github Rep Game Location\Fall2024NarrGame\Fall2024_NarrGame\Fall2024_NarrGame_WwiseProject\.cache\2C\{2CFB6899-A878-EEAD-5DB0-53A78D57308A}.wem		\Actor-Mixer Hierarchy\Default Work Unit\Audio_test		16019124
+
