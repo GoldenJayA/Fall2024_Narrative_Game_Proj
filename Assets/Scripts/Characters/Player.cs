@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Ink.Runtime;
 
 public class Player : Character
 {
@@ -11,8 +10,7 @@ public class Player : Character
     [SerializeField]
     Collider interact;
 
-    public event Action<Transform, Transform> MakeString; //"From", "To", StringStrength, MaxStrength.
-    public event Action<Story> SelectDialogue; //NPC Game Object
+    public event Action<Transform, Transform> MakeString; //"From", "To".
 
     // Start is called before the first frame update
     void Start()
@@ -50,13 +48,9 @@ public class Player : Character
         interact.enabled = false;
     }
 
-    public void TalkToNPC(GameObject NPCGameObject, Story NPCDialogue)
+    public void TalkToNPC(Transform NPC)
     {
-        //Enter Dialogue Tree.
-        SelectDialogue?.Invoke(NPCDialogue);
-        
-        //Make the String
-        MakeString?.Invoke(NPCGameObject.transform, transform);  
+        MakeString?.Invoke(NPC, transform);  
     }
 
 }
