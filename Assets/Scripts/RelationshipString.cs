@@ -15,6 +15,7 @@ public class RelationshipString : MonoBehaviour
 
 
     int stringNumber;
+    [SerializeField]
     float stringStrength;
     float maxStrength;
 
@@ -41,32 +42,29 @@ public class RelationshipString : MonoBehaviour
         }
     }
 
-    public void ConnectRelationship(Transform from, Transform towards)
+    private void ConnectRelationship(Transform from, Transform towards)
     {
         target1 = from;
         target2 = towards;
+    }
+
+    private void AssignStringNumber(int index)
+    {
+        stringNumber = index;
+    }
+
+    private void AssignStringStrength(float max, float curr)
+    {
+        maxStrength = max;
+        stringStrength = curr;
+    }
+
+    public void CreateFullString(Transform from, Transform towards, int stringNum, float maxStr, float str)
+    {
+        AssignStringNumber(stringNum);
+        AssignStringStrength(maxStr, str);
+        ConnectRelationship(from, towards);
         UpdateString();
-    }
-
-    public void ConnectRelationship(GameObject from, GameObject towards)
-    {
-        ConnectRelationship(from.transform, towards.transform);
-    }
-
-
-    private void LengthColor(float currLength)
-    {
-        Color lineColor = Color.white;
-        if (currLength / maxLength > 0.5f)
-        {
-            float factor = 1 - (Mathf.Max(0, (maxLength - currLength)) / maxLength);
-            lineColor.g -= factor;
-            lineColor.b -= factor;
-        }
-
-        lineRend.startColor = lineColor;
-        lineRend.endColor = lineColor;
-
     }
 
     private void UpdateString()
@@ -101,15 +99,19 @@ public class RelationshipString : MonoBehaviour
         lineRend.endWidth = stringWidth;
     }
 
-    public void AssignStringNumber(int index)
+    private void LengthColor(float currLength)
     {
-        stringNumber = index;
-    }
+        Color lineColor = Color.white;
+        if (currLength / maxLength > 0.5f)
+        {
+            float factor = 1 - (Mathf.Max(0, (maxLength - currLength)) / maxLength);
+            lineColor.g -= factor;
+            lineColor.b -= factor;
+        }
 
-    public void AssignStringStrength(float max, float curr)
-    {
-        maxStrength = max;
-        stringStrength = curr;
+        lineRend.startColor = lineColor;
+        lineRend.endColor = lineColor;
+
     }
 
     public float GetAnxietyReduction()

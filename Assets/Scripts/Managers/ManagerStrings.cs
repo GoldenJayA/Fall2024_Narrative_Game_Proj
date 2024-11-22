@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Ink.Runtime;
 
 public class ManagerStrings : MonoBehaviour
 {
@@ -10,16 +11,18 @@ public class ManagerStrings : MonoBehaviour
     [SerializeField]
     List<float> anxietyReductions = new List<float>();
 
-    bool FLAG_Reductions;
 
+    int connectionScore;
+    bool FLAG_Reductions;
     public event Action<float> UpdateReductions;
 
     // Start is called before the first frame update
     void Start()
     {
         FindFirstObjectByType<Player>().MakeString += MakeString;
+        FindFirstObjectByType<ManagerInk>().OnCreateStory += ObserveDialogue;
         FLAG_Reductions = false;
- 
+        connectionScore = 1;
     }
 
     // Update is called once per frame
@@ -40,12 +43,13 @@ public class ManagerStrings : MonoBehaviour
     {
         GameObject newString = Instantiate(stringPrefab);
         RelationshipString rString = newString.GetComponent<RelationshipString>();
-        rString.ConnectRelationship(from.gameObject, to.gameObject);
-
+        
+        //rString.ConnectRelationship(from.gameObject, to.gameObject);
         anxietyReductions.Add(rString.GetAnxietyReduction());
-        rString.AssignStringNumber(anxietyReductions.Count - 1);
+        //rString.AssignStringNumber(anxietyReductions.Count - 1);
         rString.EnterRange += EnterRange;
         rString.LeaveRange += LeaveRange;
+        rString.CreateFullString(from, to, anxietyReductions.Count - 1, 3, connectionScore);
     }
 
     void EnterRange(int index, float reduction)
@@ -80,4 +84,22 @@ public class ManagerStrings : MonoBehaviour
         FLAG_Reductions = true;
     }
 
+    void ObserveDialogue(Story currDialogue)
+    {
+        if (currDialogue == null)
+            return;
+        //Observing all variables individually
+        //Kim Connection
+        if (currDialogue.variablesState["kimConnection"] != null)
+        {
+            currDialogue.ObserveVariable("kimConnection", (string varName, object newValue)
+            => { SetConnectionScore((int)newValue); });
+        }
+    }
+
+    void SetConnectionScore(int val)
+    {
+        Debug.Log(val);
+        connectionScore = val;
+    }
 }
