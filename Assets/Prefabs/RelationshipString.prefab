@@ -199,7 +199,7 @@ LineRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: -1
+      m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
@@ -212,7 +212,7 @@ LineRenderer:
   m_MaskInteraction: 0
   m_UseWorldSpace: 1
   m_Loop: 0
-  m_ApplyActiveColorSpace: 1
+  m_ApplyActiveColorSpace: 0
 --- !u!114 &1288013430254891016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,3 +229,9 @@ MonoBehaviour:
   target2: {fileID: 0}
   lineRend: {fileID: 364564477565079855}
   maxLength: 5
+  anxietyReduction: 0
+  currReduction: 0
+  anxietyPool: 0
+  poolMax: 0
+  poolIncrease: 0
+  stringStrength: 0

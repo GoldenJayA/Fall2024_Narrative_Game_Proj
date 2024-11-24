@@ -25,11 +25,13 @@ public class AnxietyBar : MonoBehaviour
         
     }
 
+    //Updates the fill amount of the bar based on currVal.
     private void UpdateBar()
     {
         foreground.fillAmount = currVal / maxVal;
     }
 
+    //Changes currVal and updates the anxiety bar.
     public void AddAnxiety(float amount)
     {
         currVal += amount;

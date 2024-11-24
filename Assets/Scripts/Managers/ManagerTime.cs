@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -15,6 +16,8 @@ public class ManagerTime : MonoBehaviour
     float minutes;
     float hours;
 
+    public event Action<float, float> TimeUpdate; //Hours, Minutes
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,13 +33,20 @@ public class ManagerTime : MonoBehaviour
         CalculateMinsHours();
     }
 
+    //Converts scaledTime into the minutes & hours of in-game time. Updates UI Timer as well.
     void CalculateMinsHours()
     {
         minutes = Mathf.Floor(scaledTime / 60 % 60);
+        
         hours = Mathf.Floor(scaledTime / 60 / 60 % 24);
         UpdateUITimer();
+        if(minutes % 5 == 0) //Update once very 5 "minutes".
+        {
+            TimeUpdate?.Invoke(hours, minutes);
+        }
     }
 
+    //Takes the current time in minutes & hours to make a 4-digit time display.
     void UpdateUITimer()
     {
         string mins = "";

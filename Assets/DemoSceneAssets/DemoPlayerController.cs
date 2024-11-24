@@ -26,11 +26,12 @@ public class DemoPlayerController : MonoBehaviour
         if (nearNPC && Input.GetKeyDown(KeyCode.E))
         {
             OnInteractNPC(selectedNPC);
+            Debug.Log("NPC passed to listeners");
         }
 
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         nearNPC = true;
         selectedNPC = other.gameObject;
