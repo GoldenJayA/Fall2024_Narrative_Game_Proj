@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/DemoSceneAssets/Ink/Demos/Basic Demo/Ink/story.json.meta
 guid: 6cf48bb6d89824cc69e35b43f9a1aca6
+=======
+guid: 9007948db7c548242898130bd1812cc3
+>>>>>>> main:Assets/Wwise/LauncherInfo.json.meta
 TextScriptImporter:
   externalObjects: {}
   userData: 
