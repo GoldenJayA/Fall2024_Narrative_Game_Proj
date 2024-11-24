@@ -27,15 +27,19 @@ public class ScoreDisplayer : MonoBehaviour
     {
         if (currentStory != null)
         {
-            speakerConnection = (int)currentStory.variablesState["kimConnection"];
-            Debug.Log(speakerConnection);
+            if (currentStory.variablesState["kimConnection"] != null)
+            {
+                //speakerConnection = (int)currentStory.variablesState["kimConnection"];
+                //Debug.Log(speakerConnection);
 
 
-            currentStory.ObserveVariable("kimConnection", (string varName, object newValue)
-            => { SetConnectionScore((int)newValue); });
+                currentStory.ObserveVariable("kimConnection", (string varName, object newValue)
+                => { SetConnectionScore((int)newValue); });
+            }
+            
         }
 
-        Debug.Log("Observed");
+        //Debug.Log("Observed");
         
     }
     void SetConnectionScore(int newScore)
