@@ -2,82 +2,72 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Ink.Runtime;
 
 public class ManagerStrings : MonoBehaviour
 {
     [SerializeField]
     private GameObject stringPrefab;
     [SerializeField]
-    List<float> anxietyReductions = new List<float>();
+    List<RelationshipString> createdStrings = new List<RelationshipString>();
 
-    bool FLAG_Reductions;
-
-    public event Action<float> UpdateReductions;
+    int connectionScore;
 
     // Start is called before the first frame update
     void Start()
     {
         FindFirstObjectByType<Player>().MakeString += MakeString;
-        FLAG_Reductions = false;
- 
+        FindFirstObjectByType<ManagerInk>().OnCreateStory += ObserveDialogue;
+        connectionScore = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(FLAG_Reductions)
-        {
-            float sum = 0;
-            foreach(float AR in anxietyReductions)
-            {
-                sum += AR;
-            }
-            UpdateReductions?.Invoke(sum);
-        }
     }
 
+    //Given 2 transforms, create a RelationshipString and add it to the list.
     void MakeString(Transform from, Transform to)
     {
         GameObject newString = Instantiate(stringPrefab);
         RelationshipString rString = newString.GetComponent<RelationshipString>();
-        rString.ConnectRelationship(from.gameObject, to.gameObject);
-
-        anxietyReductions.Add(rString.GetAnxietyReduction());
-        rString.AssignStringNumber(anxietyReductions.Count - 1);
-        rString.EnterRange += EnterRange;
-        rString.LeaveRange += LeaveRange;
+        
+        createdStrings.Add(rString);
+        rString.CreateFullString(from, to, createdStrings.Count - 1, 3, connectionScore);
     }
 
-    void EnterRange(int index, float reduction)
+    //Example for reading & keeping track of variables within the INK story.
+    void ObserveDialogue(Story currDialogue)
     {
-        if(index >= anxietyReductions.Count)
-        {
+        if (currDialogue == null)
             return;
+        //Brute Force observing all variables individually since it's small and easy for now.
+        
+        //Kim Connection
+        if (currDialogue.variablesState["kimConnection"] != null)
+        {
+            currDialogue.ObserveVariable("kimConnection", (string varName, object newValue)
+            => { SetConnectionScore((int)newValue); });
         }
 
-        if (anxietyReductions[index] == reduction) 
-        {
-            return;
-        }
-
-        anxietyReductions[index] = reduction;
-        FLAG_Reductions = true;
+        //Make String should be called somewhere here, after the dialogue is *over*.
     }
 
-    void LeaveRange(int index)
+    //Function that updates "Connection Score."
+    void SetConnectionScore(int val)
     {
-        if (index >= anxietyReductions.Count)
-        {
-            return;
-        }
-
-        if (anxietyReductions[index] == 0)
-        {
-            return;
-        }
-
-        anxietyReductions[index] = 0;
-        FLAG_Reductions = true;
+        Debug.Log(val);
+        connectionScore = val;
     }
 
+    //Goes through the CreatedString list and updates each String's Anxiety Reduction.
+    public float GetAnxiety()
+    {
+        float retAnxiety = 0;
+        foreach(RelationshipString rString in createdStrings) 
+        {
+            retAnxiety += rString.AnxietyTick();
+        }
+        return retAnxiety;
+    }
 }

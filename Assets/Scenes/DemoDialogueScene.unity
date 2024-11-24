@@ -360,7 +360,6 @@ GameObject:
   - component: {fileID: 669157880}
   - component: {fileID: 669157882}
   - component: {fileID: 669157881}
-  - component: {fileID: 669157884}
   m_Layer: 5
   m_Name: DialogueCanvas
   m_TagString: Untagged
@@ -451,20 +450,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &669157884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 669157879}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d450d8ed0498fcb4991dd77d1d0c369a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UIPanel: {fileID: 8185803115716473600, guid: 0f00d61ae032c934aaa617ff5f255f2f, type: 3}
-  DialogueParent: {fileID: 436492492}
 --- !u!1 &716690746
 GameObject:
   m_ObjectHideFlags: 0
@@ -943,7 +928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bddd028f70013e04ea4c9f52ef056bba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inkJSONAsset: {fileID: 4900000, guid: f46c3593f1cca7e459da25ace563a53d, type: 3}
+  inkJSONAsset: {fileID: 4900000, guid: 1bcded5a6b527784693a7ebd407453b0, type: 3}
 --- !u!1 &1277931940
 GameObject:
   m_ObjectHideFlags: 0
@@ -1169,7 +1154,7 @@ Transform:
   m_GameObject: {fileID: 1611312554}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -3.76}
+  m_LocalPosition: {x: -1.72, y: 1, z: 1.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1226,7 +1211,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1768059722}
   - component: {fileID: 1768059723}
-  - component: {fileID: 1768059724}
   m_Layer: 0
   m_Name: StoryManager
   m_TagString: Untagged
@@ -1267,20 +1251,6 @@ MonoBehaviour:
   spkrNamePrefab: {fileID: 7793210213771476621, guid: 6952d35fefe084d41ac766a4ae64d525, type: 3}
   spkrTextPrefab: {fileID: 4415544221311237726, guid: b96281be0278cf54d88bddff5e2e8dad, type: 3}
   buttonPrefab: {fileID: 6523216745935949388, guid: 0317f34da03d8a746b5954441290d0b2, type: 3}
---- !u!114 &1768059724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1768059721}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d450d8ed0498fcb4991dd77d1d0c369a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UIPanel: {fileID: 8185803115716473600, guid: 0f00d61ae032c934aaa617ff5f255f2f, type: 3}
-  DialogueParent: {fileID: 436492492}
 --- !u!1 &1858678232
 GameObject:
   m_ObjectHideFlags: 0

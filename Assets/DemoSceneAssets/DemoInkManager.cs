@@ -26,6 +26,11 @@ public class DemoInkManager : MonoBehaviour
     [SerializeField]
     private Button buttonPrefab = null;
 
+    //story state
+    public DialogueVariables dialogueVariables;
+    private bool closeDialguePanel;
+    
+
     public static event Action<Story> OnCreateStory;
 
     // Start is called before the first frame update
@@ -33,6 +38,7 @@ public class DemoInkManager : MonoBehaviour
     {
         RemoveChildren(); //clears all UI story elements
         //StartStory();
+        dialogueVariables = new DialogueVariables();
     }
 
     private void Start()
@@ -43,48 +49,49 @@ public class DemoInkManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(story.variablesState["kimConnection"]);
+        //Debug.Log(currentStory.currentChoices.Count);
     }
 
-    void StartStory(Story npcStory)
+    void StartStory(TextAsset npcStoryJSON)
     {
         //assigns Story varible to text of Ink JSON asset
-        currentStory = npcStory;
-        if (OnCreateStory != null) OnCreateStory(currentStory);
-        RefreshView();
+        currentStory = new Story(npcStoryJSON.text); //declaring a new Story allows coversations to be started every interaction
+        dialogueVariables.StartListening(currentStory); //dialogue variables listens for variable changes in current story
+        if (OnCreateStory != null) OnCreateStory(currentStory); //passes current story to any listeners
+        closeDialguePanel = false;
+        currentStory.BindExternalFunction("quitDialogue", () => { CloseDialoguePanel(); });//for some reason called twice
+        RefreshView(); //creates and refreshes UI panel
     }
     
     void RefreshView()
     {
-        //Debug.Log("Refresh view called: dialogue panel should appear");
-        //RemoveChildren();
-        
+        RemoveChildren();
         while (currentStory.canContinue)
         {
             string text = currentStory.Continue(); //Continue gets the next line of the story
             text = text.Trim(); //removes extra white space
             CreateContentView(text); //display on screen
-        }
 
-        if (currentStory.currentChoices.Count > 0)
-        {
-            for (int i = 0; i < currentStory.currentChoices.Count; i++)
+            if (currentStory.currentChoices.Count > 0)
             {
-                Choice choice = currentStory.currentChoices[i];
-                Button button = CreateChoiceView(choice.text.Trim());
-                button.onClick.AddListener(delegate
+                //moving through loop backwards so choices appear in the order they were written in Inkey
+                for (int i = currentStory.currentChoices.Count - 1; i >= 0; i--)
                 {
-                    OnClickChoiceButton(choice);
-                });
+                    Choice choice = currentStory.currentChoices[i];
+                    Button button = CreateChoiceView(choice.text.Trim());
+                    button.onClick.AddListener(delegate
+                    {
+                        OnClickChoiceButton(choice);
+                    });
+                }
             }
-        }
-        else
-        {
-            Button choice = CreateChoiceView("End \n Restart?");
-            choice.onClick.AddListener(delegate { TallyScore(); });
-            choice.onClick.AddListener(delegate {
-                StartStory(currentStory);
-            });
+            if (closeDialguePanel)
+            {
+                if (convoPanelObj != null)
+                {
+                    RemoveChildren();
+                }
+            }
         }
     }
     
@@ -95,39 +102,35 @@ public class DemoInkManager : MonoBehaviour
         RefreshView();
     }
     
-    void CreateContentView(string text)
+    void CreateContentView(string text) //creates NPC dialogue view
     {
-        Debug.Log(text);
-        GameObject convoPanel = Instantiate(convoPanelPrefab, dialogueUIParent.transform);
-        convoPanelObj = convoPanel;
-        TMP_Text speakerName = Instantiate(spkrNamePrefab) as TMP_Text;
-        TMP_Text speakerText = Instantiate(spkrTextPrefab) as TMP_Text;
-        Debug.Log("text should instantiate");
+        GameObject convoPanel = Instantiate(convoPanelPrefab, dialogueUIParent.transform); //creates background panel
+        convoPanelObj = convoPanel; //assigns reference to script-wide variable
+        TMP_Text speakerName = Instantiate(spkrNamePrefab) as TMP_Text; //instantiates object for Speaker's Name
+        speakerName.text = (string)currentStory.variablesState["NPCName"];
+        speakerName.transform.SetParent(convoPanel.transform, false);
+        TMP_Text speakerText = Instantiate(spkrTextPrefab) as TMP_Text; //instantiates object for what speaker says
         speakerText.text = text;
         speakerText.transform.SetParent(convoPanel.transform, false);
-        speakerText.transform.SetSiblingIndex(1);
+        speakerText.transform.SetSiblingIndex(1); //sets text to appear second on panel
     }
     
-    Button CreateChoiceView(string text)
+    Button CreateChoiceView(string text) //creates PC choice buttons
     {
-        Button choice = Instantiate(buttonPrefab) as Button;
+        Button choice = Instantiate(buttonPrefab);
+
         if (convoPanelObj != null)
         {
             choice.transform.SetParent(convoPanelObj.transform, false);
             choice.transform.SetSiblingIndex(2);
+            TMP_Text choiceText = choice.GetComponentInChildren<TMP_Text>();
+            choiceText.text = text;
+            VerticalLayoutGroup choiceLayoutGroup = choice.GetComponentInParent<VerticalLayoutGroup>();
         }
-
-        TMP_Text choiceText = choice.GetComponentInChildren<TMP_Text>();
-        choiceText.text = text;
-
-        VerticalLayoutGroup choiceLayoutGroup = choice.GetComponentInParent<VerticalLayoutGroup>();
-        //choiceLayoutGroup.childForceExpandWidth = true;
-        //choiceLayoutGroup.childForceExpandHeight = false;
-
         return choice;
     }
 
-    void RemoveChildren()
+    void RemoveChildren() //called after dialogue option selected
     {
         int childCount = dialogueUIParent.transform.childCount;
         for (int i = childCount -1; i>= 0; i--)
@@ -136,8 +139,10 @@ public class DemoInkManager : MonoBehaviour
         }
     }
 
-    void TallyScore()
+    void CloseDialoguePanel()
     {
-
+        closeDialguePanel = true;
+        dialogueVariables.StopListening(currentStory); //stop listening to current story variable changes
     }
+
 }

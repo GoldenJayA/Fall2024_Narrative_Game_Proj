@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    //All characters have a topic list and a name.
     [SerializeField]
     protected TopicList topicList;
     [SerializeField]

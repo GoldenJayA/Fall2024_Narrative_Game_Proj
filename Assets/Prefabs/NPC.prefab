@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6717458497616280804}
   - component: {fileID: 3768350770096184313}
   - component: {fileID: 4912850466131548357}
+  - component: {fileID: 8123142533081911925}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -119,3 +120,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterName: 
+  inkJSONAsset: {fileID: 0}
+  mySchedule:
+  - location: {fileID: 0}
+    hourTime: 0
+    minuteTime: 0
+  pathfinding: {fileID: 8123142533081911925}
+--- !u!195 &8123142533081911925
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5575969726398466701}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

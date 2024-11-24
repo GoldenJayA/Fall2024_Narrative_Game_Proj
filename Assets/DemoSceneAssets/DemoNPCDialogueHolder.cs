@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class DemoNPCDialogueHolder : MonoBehaviour
 {
-    public static event Action<Story> OnSelectStory;
+    public static event Action<TextAsset> OnSelectStory;
 
     [SerializeField]
-    private TextAsset inkJSONAsset = null;
+    private TextAsset inkJSONAsset;
     public Story story;
 
     // Start is called before the first frame update
@@ -27,7 +27,8 @@ public class DemoNPCDialogueHolder : MonoBehaviour
     
     void SelectNPC(GameObject npc)
     {
-        Story selectedStory = npc.GetComponent<DemoNPCDialogueHolder>().story;
-        OnSelectStory?.Invoke(selectedStory);
+        //Story selectedStory = npc.GetComponent<DemoNPCDialogueHolder>().story;
+        TextAsset selectedStoryJSON = npc.GetComponent<DemoNPCDialogueHolder>().inkJSONAsset;
+        OnSelectStory?.Invoke(selectedStoryJSON);
     }
 }
