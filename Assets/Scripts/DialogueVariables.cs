@@ -16,7 +16,7 @@ public class DialogueVariables
         story.variablesState.variableChangedEvent -= VariableChanged;
     }
 
-
+    //Ink Variables --> Unity Dictionary.
     private void VariableChanged(string name, Ink.Runtime.Object value)
     {
         Debug.Log("Variable changed: " + name + " = " + value);
@@ -27,6 +27,7 @@ public class DialogueVariables
         } else variables.Add(name, value);
     }
 
+    //Unity Dictionary --> Ink Variables
     private void VariablesToStory(Story story)
     {
         if (variables != null)

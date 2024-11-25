@@ -12,7 +12,7 @@ public class Player : Character
     Collider interact;
 
     public event Action<Transform, Transform> MakeString; //"From", "To", StringStrength, MaxStrength.
-    public event Action<Story> SelectDialogue; //NPC Game Object
+    public event Action<TextAsset> SelectDialogue; //NPC Game Object
 
     // Start is called before the first frame update
     void Start()
@@ -53,7 +53,7 @@ public class Player : Character
         interact.enabled = false;
     }
 
-    public void TalkToNPC(GameObject NPCGameObject, Story NPCDialogue)
+    public void TalkToNPC(GameObject NPCGameObject, TextAsset NPCDialogue)
     {
         //Enter Dialogue Tree.
         SelectDialogue?.Invoke(NPCDialogue);

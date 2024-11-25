@@ -18,7 +18,7 @@ public class NPC : Character
 
 
     private int eventIndex;
-    public event Action<Story> OnSelectStory;
+    public event Action<TextAsset> OnSelectStory;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,7 +53,7 @@ public class NPC : Character
     {
         if(other.CompareTag("Player"))
         {
-            other.GetComponent<Player>().TalkToNPC(gameObject, story);
+            other.GetComponent<Player>().TalkToNPC(gameObject, inkJSONAsset);
             
         }
     }
