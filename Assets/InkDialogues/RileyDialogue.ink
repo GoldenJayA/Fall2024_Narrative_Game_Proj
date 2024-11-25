@@ -12,7 +12,7 @@ Oh hey! Alex said you might stob by. I'm Riley. Let me guess, you're a whiskey d
         -> RileyWhiskey
     * [Vodka is more my speed]
         -> RileyVodka
-    * [Um, you always assume people's tastes?]
+    * [You just assume people's tastes?]
         ->RileyTastes
 
 - ->RileyDefault
@@ -21,17 +21,17 @@ Oh hey! Alex said you might stob by. I'm Riley. Let me guess, you're a whiskey d
 ~rileyConnection ++
 I can just picture you curled up by a fire reading Anna Kerenina, or something. Sounds pretty cozy to me. All you need is this to enhance your vibe.
 
-    *[<Take the proferred drink and sip>]
-    -> RileyDrink
+    *[(Take the proferred drink and sip)]
+        -> RileyDrink
         
-    *[<Hesitate>]
-        Oh, I'm so sorry. Complete stranger hands you a drink at a party, what was I thinking? <She reaches back and takes a sip of your drink>
+    *[(Hesitate)]
+        Oh, I'm so sorry. Complete stranger hands you a drink at a party, what was I thinking? (She reaches back and takes a sip of your drink)
         **[Bad experience in the past?]
             ~rileyConnection ++
-            Not me, but a friend of mine. I love being around people like this, but her experience reminds me that it gets really uncomfy for some folks.
-            ***[<Take a sip, reassured>]
+            Not me, but a friend of mine. I love being around people like this, but her experience reminds me that it can be really uncomfy for some folks.
+            ***[(Take a sip, reassured)]
             ->RileyDrink
-        **[<Take a sip, reassured>]
+        **[(Take a sip, reassured)]
             ->RileyDrink
     *[You like Tolstoy?]
         My granda would read me scenes from Anna Karenina when I was in high school. I tried reading it myself at summer camp one year, but oof, 900 pages?
@@ -39,45 +39,62 @@ I can just picture you curled up by a fire reading Anna Kerenina, or something. 
             I know it's cliche, but the scene at the train station at the very end. So tragic, and so gorgeous.
             *** [Continue]
                     But try the drink! Tell me what you think.
-                    [<sip the drink>]
+                    [(sip the drink)]
                     ->RileyDrink
         **[Not much of a reader?]
             I do it when I have to, but I'd much prefer to listen. Audiobooks, podcasts, gossip. But try the drink! Tell me what you think.
-                    [<sip the drink>]
+                    [(sip the drink)]
                     ->RileyDrink
 
 - -> RileyDefault
 
 ===RileyDrink ===
-<The drink that passes your lips blossoms with the flavors of a crisp fall day. It is way too good to be served at this kind of party>
+(The drink that passes your lips blossoms with the flavors of a crisp fall day. It is way too good to be served at this kind of party)
     * [You're quite the mixologist.]
          Haha, not really, my granda just really loved whiskey, so he taught me to make all of his favorites. I wouldn't know where to start if I had to start with vodka or rum.
-    * [<immediately take another sip>]
+    * [(immediately take another sip)]
         ~rileyConnection ++
         Tacit compliment much appreciated, but this is best enjoyed slowly. Plus, pro-tip, holding a cup at these kinds of parties gives you something to do with your hands.
         
 - -> RileyDefault
 
 === RileyVodka ===
-A fine choice, comrade, how else are we going to keep our balls warm on these Siberian nights? Oh wow, I'm so sorry, I don't know where that came from.
-    * [<Respond in kind> Indeed, comrade]
+(adopting a Russian accent) A fine choice, comrade. After all, how will we keep our balls warm on these Siberian nights? Oh wow, I'm so sorry, I don't know where that came from.
+
+    * [(Respond in kind) na strovye, comrade]
+    ~rileyConnection++
+       And to your health, comrade. Regretably, comrade Ivanovich has made of with the last of the vodka, and so I offer you this paltry substitute from the Western pigs.
+       **[(Take the drink and sip)]
+         -> RileyDrink
+         
     * [Are you bartending?]
-        Ha, I wish. You know, I think it should be a rule that all college parties should have a designated bartender.
-        ***[Sounds unnecessary]
+        Ha, I wish. You know, I think all college parties should have a designated bartender. I'm serious, like it should be mandated by the university.
+        ***[Sounds pretty nice]
+            ~rileyConnection++
+            Right? Acts of service are one of my love languages, so making people nice drinks is one way I can show them I care.
         ***[Sounds too formal]
-        ---- Not at all! <talks about the joys of having someone taking care of you>
-        
-- -> RileyDefault        
+        Not at all! A bartender makes people feel cared for. Feel heard. Also would make sure no one ever has to drink jungle juice.
+            -****[Continue]
+             -> RileyDefault        
     
 === RileyTastes ===
-<Apologizes and talks about something else>
-*[Continue]
+Yes, and it's such a fun game, especially when getting to know someone for the first time! It gets them curious, reals them in, and look, now we've started a conversation.
+    *[Good point]
+    *[Still kinda weird]
+    - If I was wrong about the whiskey, let me try something else. Hmm... (she gives you a playful look up and down)
+        **[What do you see?]
+        **[(stay quiet and squirm)]
+        -- You moved around alot as a kid, you're into some niche craft like basketweaving, and you're going to love this drink I made just for you.
+            ***[Wow, impressive]
+            ***[Not even close]
+            ***[(Take the drink and sip)]
+            ->RileyDrink
 
-- ->RileyDefault
+--- ->RileyDefault
 
 === RileyDefault ===
 ~ talkedRiley = true
-{~ Riley aknowledges you briefly with a glance, but continues speaking with someone next to her.|Riley smiles and excuses herself to refill her drink.}
+{~ (Riley gives you a friendly pat on the shoulder, but quickly turns to offer another one of her drinks to an aquaintance.) | (Riley winks and ruefully holds up her empty ice bucket as she walks away.)}
     + [Leave]
     {quitDialogue()} 
     -> RileyDefault
