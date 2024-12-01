@@ -70,3 +70,13 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/WwiseSettings.xml
+Assets/Wwise/MonoBehaviour/Editor/AkEnvironmentPortalInspector.cs.meta
+Assets/Wwise/MonoBehaviour/Editor/AkEventInspector.cs
+Assets/Wwise/MonoBehaviour/Editor/AkEventInspector.cs.meta
+Assets/Wwise/MonoBehaviour/Editor/AkGameObjectInspector.cs
+Assets/Wwise/MonoBehaviour/Editor/AkGameObjectInspector.cs.meta
+Assets/Wwise/MonoBehaviour/Editor/AkGameObjListenerListDrawer.cs
+Assets/Wwise/MonoBehaviour/Editor/AkGameObjListenerListDrawer.cs.meta
+Assets/WwiseSettings.xml
+Assets/WwiseSettings.xml.meta
