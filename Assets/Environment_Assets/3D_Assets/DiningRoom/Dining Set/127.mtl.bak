@@ -1,0 +1,118 @@
+# File produced by AccuTrans 3D
+
+newmtl Dining_Tab
+  Ns 112.76
+  d 1.0
+  illum 2
+  Kd 0.6118 0.3922 0.2431
+  Ka 0.6118 0.3922 0.2431
+  Ks 0.898 0.898 0.898
+  map_Kd E:\BOIS-~77.jpg
+
+newmtl Seat_Cush1
+  Ns 112.76
+  d 1.0
+  illum 2
+  Kd 0.6118 0.3922 0.2431
+  Ka 0.6118 0.3922 0.2431
+  Ks 0.898 0.898 0.898
+  map_Kd E:\BOIS-~77.jpg
+
+newmtl Seat_Cush1_1
+  Ns 77.2
+  d 1.0
+  illum 2
+  Kd 0.902 0.8902 0.8235
+  Ka 0.902 0.8902 0.8235
+  Ks 0.898 0.898 0.898
+  map_Kd E:\PARIS~20.jpg
+
+newmtl Seat_Cush2
+  Ns 112.76
+  d 1.0
+  illum 2
+  Kd 0.6118 0.3922 0.2431
+  Ka 0.6118 0.3922 0.2431
+  Ks 0.898 0.898 0.898
+  map_Kd E:\BOIS-~77.jpg
+
+newmtl Seat_Cush2_1
+  Ns 77.2
+  d 1.0
+  illum 2
+  Kd 0.902 0.8902 0.8235
+  Ka 0.902 0.8902 0.8235
+  Ks 0.898 0.898 0.898
+  map_Kd E:\PARIS~20.jpg
+
+newmtl Seat_Cush3
+  Ns 112.76
+  d 1.0
+  illum 2
+  Kd 0.6118 0.3922 0.2431
+  Ka 0.6118 0.3922 0.2431
+  Ks 0.898 0.898 0.898
+  map_Kd E:\BOIS-~77.jpg
+
+newmtl Seat_Cush3_1
+  Ns 77.2
+  d 1.0
+  illum 2
+  Kd 0.902 0.8902 0.8235
+  Ka 0.902 0.8902 0.8235
+  Ks 0.898 0.898 0.898
+  map_Kd E:\PARIS~20.jpg
+
+newmtl Seat_Cush4
+  Ns 112.76
+  d 1.0
+  illum 2
+  Kd 0.6118 0.3922 0.2431
+  Ka 0.6118 0.3922 0.2431
+  Ks 0.898 0.898 0.898
+  map_Kd E:\BOIS-~77.jpg
+
+newmtl Seat_Cush4_1
+  Ns 77.2
+  d 1.0
+  illum 2
+  Kd 0.902 0.8902 0.8235
+  Ka 0.902 0.8902 0.8235
+  Ks 0.898 0.898 0.898
+  map_Kd E:\PARIS~20.jpg
+
+newmtl Seat_Cush5
+  Ns 112.76
+  d 1.0
+  illum 2
+  Kd 0.6118 0.3922 0.2431
+  Ka 0.6118 0.3922 0.2431
+  Ks 0.898 0.898 0.898
+  map_Kd E:\BOIS-~77.jpg
+
+newmtl Seat_Cush5_1
+  Ns 77.2
+  d 1.0
+  illum 2
+  Kd 0.902 0.8902 0.8235
+  Ka 0.902 0.8902 0.8235
+  Ks 0.898 0.898 0.898
+  map_Kd E:\PARIS~20.jpg
+
+newmtl Seat_Cushi
+  Ns 112.76
+  d 1.0
+  illum 2
+  Kd 0.6118 0.3922 0.2431
+  Ka 0.6118 0.3922 0.2431
+  Ks 0.898 0.898 0.898
+  map_Kd E:\BOIS-~77.jpg
+
+newmtl Seat_Cushi_1
+  Ns 77.2
+  d 1.0
+  illum 2
+  Kd 0.902 0.8902 0.8235
+  Ka 0.902 0.8902 0.8235
+  Ks 0.898 0.898 0.898
+  map_Kd E:\PARIS~20.jpg
