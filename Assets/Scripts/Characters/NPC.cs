@@ -53,7 +53,7 @@ public class NPC : Character
     {
         if(other.CompareTag("Player"))
         {
-            other.GetComponent<Player>().TalkToNPC(gameObject, inkJSONAsset);
+            other.GetComponent<FirstPersonPlayer>().TalkToNPC(gameObject, inkJSONAsset);
             
         }
     }

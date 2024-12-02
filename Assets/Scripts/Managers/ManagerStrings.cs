@@ -16,7 +16,7 @@ public class ManagerStrings : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FindFirstObjectByType<Player>().MakeString += MakeString;
+        FindFirstObjectByType<FirstPersonPlayer>().MakeString += MakeString;
         FindFirstObjectByType<ManagerInk>().OnCreateStory += ObserveDialogue;
         connectionScore = 1;
     }

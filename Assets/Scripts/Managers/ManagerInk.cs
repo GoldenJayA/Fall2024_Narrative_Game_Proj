@@ -41,7 +41,7 @@ public class ManagerInk : MonoBehaviour
 
     private void Start()
     {
-        FindFirstObjectByType<Player>().SelectDialogue += StartStory;
+        FindFirstObjectByType<FirstPersonPlayer>().SelectDialogue += StartStory;
     }
 
     // Update is called once per frame
