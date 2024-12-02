@@ -245,19 +245,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d770438fa2b1804abb823b63e4c625b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitializationSettings: {fileID: 11400000, guid: 3229ee7178f60654e875155d386e0bb6, type: 2}
-  basePath: 
-  language: 
-  defaultPoolSize: 0
-  lowerPoolSize: 0
-  streamingPoolSize: 0
-  memoryCutoffThreshold: 0
-  monitorPoolSize: 0
-  monitorQueuePoolSize: 0
-  callbackManagerBufferSize: 0
-  spatialAudioPoolSize: 0
-  maxSoundPropagationDepth: 0
-  engineLogging: 0
 --- !u!4 &381707671
 Transform:
   m_ObjectHideFlags: 0
@@ -928,7 +915,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bddd028f70013e04ea4c9f52ef056bba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inkJSONAsset: {fileID: 4900000, guid: 1bcded5a6b527784693a7ebd407453b0, type: 3}
+  inkJSONAsset: {fileID: 0}
 --- !u!1 &1277931940
 GameObject:
   m_ObjectHideFlags: 0
@@ -960,8 +947,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21131c04475a27b4d86c638a6bf842da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDefaultListener: 1
-  listenerId: 0
 --- !u!114 &1277931942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -974,17 +959,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68eb136f3caa08541b330f98cf0e0be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_listeners:
-    initialListenerList: []
-    useDefaultListeners: 1
-  isEnvironmentAware: 0
-  isStaticObject: 0
-  usePositionOffsetData: 0
-  m_positionOffsetData:
-    KeepMe: 0
-    positionOffset: {x: 0, y: 0, z: 0}
-  m_posOffsetData: {fileID: 0}
-  listenerMask: 1
 --- !u!20 &1277931943
 Camera:
   m_ObjectHideFlags: 0
@@ -1609,6 +1583,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2347315530325799742, guid: 2453883a9b747634aa24e422fb682165, type: 3}
+      propertyPath: inkJSONAsset
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4866571246655251444, guid: 2453883a9b747634aa24e422fb682165, type: 3}
       propertyPath: m_Name
       value: NPC
