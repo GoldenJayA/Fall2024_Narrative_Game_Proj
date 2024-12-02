@@ -11,7 +11,7 @@ EXTERNAL quitDialogue()
 
 === JordanStart ===
 ~NPCName = "??"
-< On a bench in the rear of backyard, someone sits not talking to anyone. You get closer and see they are cradling their phone in their lap and holding their solo cup between their teeth. They stare blankly into space. >
+< You see someone not talking to anyone sitting alone in the corner. You get closer and see they are cradling their phone in their lap and holding their solo cup between their teeth. They stare blankly into space. >
     *[Can I sit?] -> jordanIntroduce
     *[Are you ok?] ->jordanIntroduce
     +[-Leave-] ->JordanStart
