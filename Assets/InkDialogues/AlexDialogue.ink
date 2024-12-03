@@ -1,10 +1,10 @@
 VAR NPCName = "Alex"
 VAR alexConnection = 0
 VAR introducedAlex = false
-VAR playerInterest = ""
 VAR RowanStatus = ""
 VAR RowanPronoun = ""
 
+INCLUDE GlobalVariables.INK
 EXTERNAL quitDialogue()
 
 { introducedAlex == false: -> AlexIntro | -> AlexDefault}

@@ -1108,7 +1108,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &878766797
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2281,8 +2281,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Art Director: Nicole McConaty\nLead Programmer: Paul Kipp\nNarrative Designer:
-    Jacob Laden-Guindon\nSound Designer: \n"
+  m_text: 'Art Director: Nicole McConaty
+
+    Lead Programmer: Paul Kipp
+
+    Narrative
+    Designer: Jacob Laden-Guindon
+
+    Sound Designer: Angel Jaimes
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9fb2ae1793e854fab9905bd98662e1cb, type: 2}
   m_sharedMaterial: {fileID: -6799815136978338366, guid: 9fb2ae1793e854fab9905bd98662e1cb, type: 2}
@@ -2420,72 +2428,71 @@ MonoBehaviour:
 
     Couch Medium by Quaternius
 
-    Rug
-    Rectangle by Kenney
+    Rug Rectangle
+    by Kenney
 
     Folding Table by S. Paul Michael [CC-BY] via Poly Pizza
 
     Square
     window by Poly by Google [CC-BY] via Poly Pizza
 
-    Little Bookcase by Don
-    Carson [CC-BY] via Poly Pizza
+    Little Bookcase by Don Carson
+    [CC-BY] via Poly Pizza
 
-    Tv stand by CMHT Oculus [CC-BY] via Poly
-    Pizza
+    Tv stand by CMHT Oculus [CC-BY] via Poly Pizza
 
-    Fiddle-leaf Plant by Poly by Google [CC-BY] via Poly Pizza
+    Fiddle-leaf
+    Plant by Poly by Google [CC-BY] via Poly Pizza
 
-    TV
-    by jeremy [CC-BY] via Poly Pizza
-
-    Nice Door by Wesley Thompson [CC-BY] via
+    TV by jeremy [CC-BY] via
     Poly Pizza
 
-    Kitchen Cooktop and Counter by S. Paul Michael [CC-BY] via Poly
-    Pizza
-
-    Kitchen Fridge by Quaternius
-
-    Storage Shelf by Jarlan Perez
-    [CC-BY] via Poly Pizza
-
-    Modern Kitchen Table by Zsky [CC-BY] via Poly Pizza
+    Nice Door by Wesley Thompson [CC-BY] via Poly Pizza
 
     Kitchen
-    Stool by Zsky [CC-BY] via Poly Pizza
+    Cooktop and Counter by S. Paul Michael [CC-BY] via Poly Pizza
 
-    VR DJ. with an RMX by Steve Stone
-    [CC-BY] via Poly Pizza
+    Kitchen Fridge
+    by Quaternius
 
-    Blue Cooler, Open with Beer by S. Paul Michael [CC-BY]
+    Storage Shelf by Jarlan Perez [CC-BY] via Poly Pizza
+
+    Modern
+    Kitchen Table by Zsky [CC-BY] via Poly Pizza
+
+    Kitchen Stool by Zsky [CC-BY]
     via Poly Pizza
 
-    Soda Can by jeremy [CC-BY] via Poly Pizza
+    VR DJ. with an RMX by Steve Stone [CC-BY] via Poly Pizza
+
+    Blue
+    Cooler, Open with Beer by S. Paul Michael [CC-BY] via Poly Pizza
 
     Soda Can
     by jeremy [CC-BY] via Poly Pizza
 
-    Couch by CMHT Oculus [CC-BY] via Poly
-    Pizza
+    Soda Can by jeremy [CC-BY] via Poly Pizza
 
-    Dining Set by CMHT Oculus [CC-BY] via Poly Pizza
+    Couch
+    by CMHT Oculus [CC-BY] via Poly Pizza
 
-    Pizza Box
-    by Kenney
+    Dining Set by CMHT Oculus [CC-BY]
+    via Poly Pizza
+
+    Pizza Box by Kenney
 
     Pizza by Quaternius
 
-    Rug Rounded by Kenney
+    Rug Rounded
+    by Kenney
 
-    Orchid
-    by Poly by Google [CC-BY] via Poly Pizza
+    Orchid by Poly by Google [CC-BY] via Poly Pizza
 
-    Distant Lands Free Characters
-    [Standard Unity Asset Store EULA] via Unity
+    Distant Lands
+    Free Characters [Standard Unity Asset Store EULA] via Unity
 
-    BlockMan by Robert Mark [CC-BY]
-    via Poly Pizza
+    BlockMan by
+    Robert Mark [CC-BY] via Poly Pizza
 
 '
   m_isRightToLeft: 0
