@@ -16,6 +16,9 @@ public class NPC : Character
     [SerializeField]
     protected NavMeshAgent pathfinding;
 
+    [SerializeField]
+    protected Animator animator;
+
 
     private int eventIndex;
     public event Action<TextAsset> OnSelectStory;
@@ -26,6 +29,7 @@ public class NPC : Character
         FindFirstObjectByType<ManagerTime>().TimeUpdate += ScheduleUpdate;
         eventIndex = -1;
         pathfinding.stoppingDistance = 2;
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -63,12 +67,17 @@ public class NPC : Character
     protected void ScheduleUpdate(float hours, float minutes)
     {
         if (eventIndex >= mySchedule.Count - 1)
+        {
+            animator.SetBool("isWalking", false);
             return;
+        }
+            
 
         ScheduleEvent nextEvent = mySchedule[eventIndex + 1];
         if(nextEvent.hourTime <= hours && nextEvent.minuteTime <= minutes)
         {
             pathfinding.SetDestination(nextEvent.location.position);
+            animator.SetBool("isWalking", true);
             eventIndex++;
         }
     }

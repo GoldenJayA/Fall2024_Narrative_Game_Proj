@@ -156,7 +156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -295, y: -145}
+  m_AnchoredPosition: {x: -241, y: -125}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &73713170
@@ -179,8 +179,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Your anxiety got too high for you to be around other people. You had to
-    leave before seeing Rowan again.
+  m_text: You managed to keep your anxiety at bay. You stayed at the party long enough
+    to see Rowan again!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9fb2ae1793e854fab9905bd98662e1cb, type: 2}
   m_sharedMaterial: {fileID: -6799815136978338366, guid: 9fb2ae1793e854fab9905bd98662e1cb, type: 2}
@@ -207,8 +207,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16.33
-  m_fontSizeBase: 16.33
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 66.645134, y: -112.719315, z: -244.44576, w: 0}
+  m_margin: {x: 0, y: -88.72011, z: -244.44576, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -269,6 +269,7 @@ GameObject:
   - component: {fileID: 133155919}
   - component: {fileID: 133155918}
   - component: {fileID: 133155917}
+  - component: {fileID: 133155921}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -363,6 +364,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &133155921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133155916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8dc2b8d1e1274541bce6846e61e99e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &163408498
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,7 +546,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -193.00002}
+  m_AnchoredPosition: {x: 0, y: -370}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &513304216
@@ -579,7 +592,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 513304217}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 133155921}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &513304217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1025,7 +1050,7 @@ GameObject:
   - component: {fileID: 1645271053}
   - component: {fileID: 1645271052}
   m_Layer: 5
-  m_Name: Gameovertext
+  m_Name: successText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1070,7 +1095,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Game Over
+  m_text: Success!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9fb2ae1793e854fab9905bd98662e1cb, type: 2}
   m_sharedMaterial: {fileID: -6799815136978338366, guid: 9fb2ae1793e854fab9905bd98662e1cb, type: 2}
@@ -1251,7 +1276,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -95}
+  m_AnchoredPosition: {x: 0, y: -231}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1892240039
@@ -1297,7 +1322,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1892240040}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 133155921}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: ReturnMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1892240040
 MonoBehaviour:
   m_ObjectHideFlags: 0
