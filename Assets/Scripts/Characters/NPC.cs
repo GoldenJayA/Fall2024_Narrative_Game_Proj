@@ -15,11 +15,13 @@ public class NPC : Character
     protected List<ScheduleEvent> mySchedule; //Schedule of events for the NPC to pathfind towards.
     [SerializeField]
     protected NavMeshAgent pathfinding;
+    [SerializeField]
+    protected GameObject relStringPoint;
 
     [SerializeField]
     protected Animator animator;
 
-
+    private bool isWalking, isTalking;
     private int eventIndex;
     public event Action<TextAsset> OnSelectStory;
     // Start is called before the first frame update
@@ -27,6 +29,7 @@ public class NPC : Character
     {
         story = new Story(inkJSONAsset.text);
         FindFirstObjectByType<ManagerTime>().TimeUpdate += ScheduleUpdate;
+        FindFirstObjectByType<ManagerInk>().FinishedTalking += FinishTalking;
         eventIndex = -1;
         pathfinding.stoppingDistance = 2;
         animator = GetComponentInChildren<Animator>();
@@ -35,7 +38,8 @@ public class NPC : Character
     // Update is called once per frame
     void Update()
     {
-
+        isWalking = pathfinding.velocity.magnitude > 0f;
+        UpdateAnim();
     }
 
 
@@ -57,8 +61,11 @@ public class NPC : Character
     {
         if(other.CompareTag("Player"))
         {
-            other.GetComponent<FirstPersonPlayer>().TalkToNPC(gameObject, inkJSONAsset);
-            
+            transform.LookAt(other.transform.position);
+            isTalking = true;
+            pathfinding.isStopped = true;
+            pathfinding.velocity = Vector3.zero;
+            other.GetComponent<FirstPersonPlayer>().TalkToNPC(relStringPoint, inkJSONAsset);
         }
     }
 
@@ -90,5 +97,17 @@ public class NPC : Character
         newEvent.hourTime = hour;
         newEvent.minuteTime = minute;
         mySchedule.Add(newEvent);
+    }
+
+    protected void UpdateAnim()
+    {
+        animator.SetBool("isWalking", isWalking);
+        animator.SetBool("isTalking", isTalking);
+    }
+
+    protected void FinishTalking()
+    {
+        isTalking = false;
+        pathfinding.isStopped = false;
     }
 }

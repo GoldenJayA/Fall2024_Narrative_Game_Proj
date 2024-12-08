@@ -30,6 +30,7 @@ public class ManagerInk : MonoBehaviour
     
 
     public event Action<Story> OnCreateStory;
+    public event Action FinishedTalking, StartTalking;
     private bool closeDialoguePanel;
     // Start is called before the first frame update
     private void Awake()
@@ -50,8 +51,9 @@ public class ManagerInk : MonoBehaviour
         //Debug.Log(story.variablesState["kimConnection"]);
     }
 
-    void StartStory(TextAsset npcStory)
+    private void StartStory(TextAsset npcStory)
     {
+        StartTalking?.Invoke();
         //assigns Story varible to text of Ink JSON asset
         currentStory = new Story(npcStory.text);
         dialogueVars.StartListening(currentStory);
@@ -150,5 +152,6 @@ public class ManagerInk : MonoBehaviour
     {
         closeDialoguePanel = true;
         dialogueVars.StopListening(currentStory); //stop listening to current story variable changes
+        FinishedTalking?.Invoke();
     }
 }
