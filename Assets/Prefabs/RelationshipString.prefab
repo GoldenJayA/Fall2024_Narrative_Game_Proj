@@ -228,7 +228,7 @@ MonoBehaviour:
   target1: {fileID: 0}
   target2: {fileID: 0}
   lineRend: {fileID: 364564477565079855}
-  maxLength: 5
+  maxLength: 8
   anxietyReduction: 0
   currReduction: 0
   anxietyPool: 0

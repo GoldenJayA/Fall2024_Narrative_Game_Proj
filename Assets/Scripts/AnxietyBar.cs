@@ -31,12 +31,12 @@ public class AnxietyBar : MonoBehaviour
         foreground.fillAmount = currVal / maxVal;
     }
 
-    //Changes currVal and updates the anxiety bar.
-    public void AddAnxiety(float amount)
+    //Changes currVal and updates the anxiety bar. Returns if bar is full.
+    public bool AddAnxiety(float amount)
     {
         currVal += amount;
         currVal = Mathf.Clamp(currVal, minVal, maxVal);
-
         UpdateBar();
+        return currVal >= maxVal;
     }
 }

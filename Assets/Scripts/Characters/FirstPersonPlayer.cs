@@ -15,31 +15,41 @@ public class FirstPersonPlayer : Character
     private float mouseSens = 100;
     [SerializeField]
     private Camera cam;
+    [SerializeField]
+    private GameObject relStringPoint;
 
     private float xRot = 0;
 
     public event Action<Transform, Transform> MakeString; //"From", "To", StringStrength, MaxStrength.
     public event Action<TextAsset> SelectDialogue; //NPC Game Object
 
+    private GameObject lastNPCStringPoint;
+    private bool isTalking, isSequence;
+
     // Start is called before the first frame update
     void Start()
     {
+        FindFirstObjectByType<ManagerInk>().FinishedTalking += FinishTalking;
         interact.enabled = false;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        isTalking = isSequence = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        MovementControl();
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (!isTalking)
         {
-            Interact();
+            MovementControl();
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Interact();
+            }
         }
     }
 
-    //Simple tank controls for moving around. Tank controols = forward & backward to move, left & right to turn.
+    //Basic 3D First Person character control.
     void MovementControl()
     {
         float mouseX = Input.GetAxis("Mouse X") * mouseSens * Time.deltaTime;
@@ -57,7 +67,7 @@ public class FirstPersonPlayer : Character
     }
 
     //Activates the hitbox for interacting with NPCs and other objects.
-    void Interact()
+    public void Interact()
     {
         interact.enabled = true;
         Invoke("TurnOffInteract", 0.1f);
@@ -69,13 +79,35 @@ public class FirstPersonPlayer : Character
         interact.enabled = false;
     }
 
-    public void TalkToNPC(GameObject NPCGameObject, TextAsset NPCDialogue)
+    public void TalkToNPC(GameObject stringPoint, TextAsset NPCDialogue)
     {
         //Enter Dialogue Tree.
+        lastNPCStringPoint = stringPoint;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+        isTalking = true;
         SelectDialogue?.Invoke(NPCDialogue);
-        
+    }
+
+    public void TalkSequence(TextAsset sequence)
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+        isTalking = true;
+        isSequence = true;
+        SelectDialogue?.Invoke(sequence);
+    }
+
+    private void FinishTalking()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        isTalking = false;
         //Make the String
-        MakeString?.Invoke(NPCGameObject.transform, transform);  
+        if (!isSequence)
+        { 
+            MakeString?.Invoke(lastNPCStringPoint.transform, relStringPoint.transform); 
+        }
     }
 
 }

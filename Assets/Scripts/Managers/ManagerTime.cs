@@ -12,25 +12,41 @@ public class ManagerTime : MonoBehaviour
     [SerializeField]
     float timeScale; //Conversion of seconds to game time minutes/hours.
 
-    float scaledTime;
+    float scaledTime, currScale;
     float minutes;
     float hours;
+    bool startCounting;
 
     public event Action<float, float> TimeUpdate; //Hours, Minutes
+    public event Action Midnight;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        currScale = timeScale;
         //timeScale = 60; //1 Second = 1 Minute.
         minutes = 0;
         hours = 0;
+        startCounting = false;
+        CalculateMinsHours();
+        FindFirstObjectByType<ManagerSequence>().HouseInitialize += HouseStart;
+        FindFirstObjectByType<ManagerInk>().StartTalking += StopCount;
+        FindFirstObjectByType<ManagerInk>().FinishedTalking += StartCount;
     }
 
     // Update is called once per frame
     void Update()
     {
-        scaledTime += Time.deltaTime * timeScale;
-        CalculateMinsHours();
+        if (startCounting)
+        {
+            scaledTime += Time.deltaTime * currScale;
+            CalculateMinsHours();
+            if (hours >= 3) //Starting at 9:00, ending at 12:00.
+            {
+                Midnight?.Invoke();
+            }
+        }
     }
 
     //Converts scaledTime into the minutes & hours of in-game time. Updates UI Timer as well.
@@ -40,7 +56,7 @@ public class ManagerTime : MonoBehaviour
         
         hours = Mathf.Floor(scaledTime / 60 / 60 % 24);
         UpdateUITimer();
-        if(minutes % 5 == 0) //Update once very 5 "minutes".
+        if(minutes % 2 == 0) //Update once very 2 "minutes".
         {
             TimeUpdate?.Invoke(hours, minutes);
         }
@@ -62,8 +78,22 @@ public class ManagerTime : MonoBehaviour
         {
             hrs += "0";
         }
-        hrs += hours;
+        hrs += hours + 9; //Start at 9 PM. Only need to display that time.
 
         UITimer.text =  hrs + ":" + mins;
+    }
+
+    void HouseStart()
+    {
+        startCounting = true;
+    }
+    void StopCount()
+    {
+        currScale = 0;
+    }
+
+    void StartCount()
+    {
+        currScale = timeScale;
     }
 }

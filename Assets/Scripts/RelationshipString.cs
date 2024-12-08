@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RelationshipString : MonoBehaviour
@@ -20,7 +21,7 @@ public class RelationshipString : MonoBehaviour
     [SerializeField]
     float stringStrength;
     float maxStrength;
-    bool inRange;
+    bool inRange, inSight;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -30,15 +31,15 @@ public class RelationshipString : MonoBehaviour
         {
             UpdateString();
         }
+        inSight = inRange = true;
 
-        anxietyReduction = -5;
-        currReduction = anxietyReduction;
-
-        poolMax = 100;
-        anxietyPool = poolMax;
-        poolIncrease = 1.5f;
-
-        inRange = true;
+        //anxietyReduction = -5;
+        //currReduction = anxietyReduction;
+        //poolMax = 100;
+        //anxietyPool = poolMax;
+        //poolIncrease = 1.5f;
+        
+        
     }
 
     // Update is called once per frame
@@ -70,6 +71,11 @@ public class RelationshipString : MonoBehaviour
         stringStrength = curr;
 
         //Adjust anxiety pool values based on strength?
+        poolMax = curr * 100;
+        poolIncrease = curr * 2.5f;
+        anxietyPool = poolMax;
+        anxietyReduction = -5 * curr / max;
+        currReduction = anxietyReduction;
     }
 
     //Public creation function, taking in parameters required to make the RelationshipString.
@@ -84,32 +90,48 @@ public class RelationshipString : MonoBehaviour
     //Calculates the distance between the 2 targets and adjusts various varables due to that.
     private void UpdateString()
     {
+        //Line of Sight check.
+        RaycastHit lineOfSight = new RaycastHit();
+        if (Physics.Raycast(target1.position, (target2.position - target1.position), out lineOfSight, maxLength))
+        {
+            if (!lineOfSight.collider.gameObject.CompareTag("Player"))
+            {
+                inSight = false;
+            }
+            else
+            {
+                inSight = true;
+            }
+        }
+
+        //Distance check.
         float distance = Vector3.Distance(target1.position, target2.position);
         Vector3 direction = target2.position - target1.position;
-
-        //There's a cylinder that can point along the connection if collision is desired; Scaling is broken.
-        transform.position = target1.position + (direction / 2);
-        transform.LookAt(target2);
-        transform.localScale = new Vector3(1, distance, 1);
-        transform.eulerAngles += new Vector3(90, 0, 0);
-
         Vector3 endPoint = target2.position;
         if (distance > maxLength)
         {
             //Out of range, make sure that the line only extends as far as the maximum length.
             inRange = false;
             endPoint = target1.position + (direction.normalized * maxLength);
-            currReduction = 0;
+            //currReduction = 0;
         }
         else
         {
             //In range, make sure that anxiety reduction can happen.
             inRange = true;
-            currReduction = anxietyReduction;
+            //currReduction = anxietyReduction;
         }
-
         Vector3[] linePoints = { target1.position, endPoint };
         lineRend.SetPositions(linePoints);
+
+//There's a cylinder that can point along the connection if collision is desired; Scaling is broken.
+        /*
+        transform.position = target1.position + (direction / 2);
+        transform.LookAt(target2);
+        transform.localScale = new Vector3(1, distance, 1);
+        transform.eulerAngles += new Vector3(90, 0, 0);
+        */
+
 
         //Width of the string is depentent on the strength of the relationship, which can change over time.
         float stringWidth = 1;
@@ -117,21 +139,37 @@ public class RelationshipString : MonoBehaviour
             stringWidth = stringStrength / maxStrength;
         lineRend.startWidth = stringWidth;
         lineRend.endWidth = stringWidth;
-        
+       
+        if(!inSight || !inRange)
+        {
+            currReduction = 0;
+        }
+        else
+        {
+            currReduction = anxietyReduction;
+        }
+
         UpdateColor(distance);
     }
 
     //Updates the color of the string to match physical distance & anxiety pool status.
     private void UpdateColor(float currLength)
     {
+        if(!inSight)
+        {
+            Color clear = Color.clear;
+            lineRend.startColor = lineRend.endColor = clear;
+            return;
+        }
+
         float hue, saturation, lightness;
         Color.RGBToHSV(Color.green, out hue, out saturation, out lightness);
 
         saturation = Mathf.Min((anxietyPool / poolMax) * 5, 1); //Become closer to gray if pool is depleted.
-        lightness = Mathf.Min(0.5f, (maxLength - currLength) / maxLength * 10); //Lose all color once out of range. (Subject to change).
-
         Color lineColor = Color.HSVToRGB(hue, saturation, lightness);
 
+        float opacity = (maxLength - currLength) / maxLength * 10; //Become invisible once out of range.
+        lineColor.a = opacity;
         lineRend.startColor = lineColor;
         lineRend.endColor = lineColor;
 
@@ -143,11 +181,11 @@ public class RelationshipString : MonoBehaviour
     public float AnxietyTick()
     {
         float retVal = 0;
-        if (!inRange) //Not in range, refill the pool.
+        if (!inRange || !inSight) //Not in range nor sight, refill the pool.
         {
             anxietyPool = Mathf.Clamp(anxietyPool + poolIncrease, 0, poolMax);
         }
-        else if (inRange && anxietyPool > 0 && currReduction < 0) //In range & reducing, remove from pool.
+        else if (inRange && inSight && anxietyPool > 0 && currReduction < 0) //In range & reducing, remove from pool.
         {
             if(anxietyPool + currReduction > 0)
             {
