@@ -153,5 +153,6 @@ public class ManagerInk : MonoBehaviour
         closeDialoguePanel = true;
         dialogueVars.StopListening(currentStory); //stop listening to current story variable changes
         FinishedTalking?.Invoke();
+        Debug.Log("invoked finished talking");
     }
 }

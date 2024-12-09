@@ -46,6 +46,10 @@ public class ManagerSequence : MonoBehaviour
             mainCam.transform.localRotation = Quaternion.Euler(0, 0, 0);
             player.Interact();
         }
+
+        Debug.Log("win condition: " + winCondition);
+        Debug.Log("lose condition: " + loseCondition);
+        Debug.Log("start condition: " + startCondition);
     }
 
     private void OpeningSequence()

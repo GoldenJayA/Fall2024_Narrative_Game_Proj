@@ -14,7 +14,5 @@ TestLoop Thingie
 +[-Loop-]
     ->Loop
 
-- ->END
-
 ===function quitDialogue===
     ~return
