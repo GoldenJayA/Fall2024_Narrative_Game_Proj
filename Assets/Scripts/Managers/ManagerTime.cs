@@ -38,7 +38,7 @@ public class ManagerTime : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (startCounting)
+        if (startCounting && currScale > 0)
         {
             scaledTime += Time.deltaTime * currScale;
             CalculateMinsHours();
