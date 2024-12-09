@@ -15,6 +15,9 @@ public class RelationshipString : MonoBehaviour
     float anxietyReduction, currReduction; //Negative = reducing, Positve = increassing.
     [SerializeField]
     float anxietyPool, poolMax, poolIncrease;
+    [SerializeField]
+    Material glowMat, lineMat;
+    
 
 
     int stringNumber; //Depricated or not needed?
@@ -38,8 +41,7 @@ public class RelationshipString : MonoBehaviour
         //poolMax = 100;
         //anxietyPool = poolMax;
         //poolIncrease = 1.5f;
-        
-        
+        lineRend.material = glowMat;
     }
 
     // Update is called once per frame
@@ -143,10 +145,12 @@ public class RelationshipString : MonoBehaviour
         if(!inSight || !inRange)
         {
             currReduction = 0;
+            lineRend.material = lineMat;
         }
         else
         {
             currReduction = anxietyReduction;
+            lineRend.material = glowMat;
         }
 
         UpdateColor(distance);

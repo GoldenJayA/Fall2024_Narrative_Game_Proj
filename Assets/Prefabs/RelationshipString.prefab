@@ -131,9 +131,6 @@ LineRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 1901061222fcb48eba2a88e9a5196ce3, type: 2}
-  - {fileID: 2100000, guid: 1901061222fcb48eba2a88e9a5196ce3, type: 2}
-  - {fileID: 2100000, guid: 1901061222fcb48eba2a88e9a5196ce3, type: 2}
-  - {fileID: 2100000, guid: 1901061222fcb48eba2a88e9a5196ce3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -237,4 +234,6 @@ MonoBehaviour:
   anxietyPool: 0
   poolMax: 0
   poolIncrease: 0
+  glowMat: {fileID: 2100000, guid: 1901061222fcb48eba2a88e9a5196ce3, type: 2}
+  lineMat: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   stringStrength: 0
