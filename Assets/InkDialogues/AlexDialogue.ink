@@ -41,7 +41,7 @@ Look, I know big social gatherings stress you out. But you gotta just dive in an
 = tutorial 
 ~ NPCName = "Set up"
 < You've just formed a connection with Alex. You can form connections with other partygoers by interacting with them and making dialogue choices they would approve of. >
-* [-Talk to peope, got it-]
+* [-Talk to people, got it-]
 - < Connections with characters will appear as a line linking you two together. >
 * [-Lines between characters, ok-]
 - < When you interact with a character you have a connection with, your anxiety will go down. >
