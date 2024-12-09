@@ -64,7 +64,11 @@ Nice. Always wanted to go abroad, but my mom... anyway, where'd you go?
     - not TaylorInterrupt:->TaylorInterrupt
     - else: ->TaylorInterrupt1
     }
-- **[Um...]->TaylorInterrupt
+- **[Um...]
+    {
+    - not TaylorInterrupt:->TaylorInterrupt
+    - else: ->TaylorInterrupt1
+    }
 
 = leave    
 You take medical leave or something?
@@ -74,12 +78,18 @@ You take medical leave or something?
     **[Answered the phone]
     **[Meetings, lots of meetings]
     -- ~taylorConnection-- 
-        -> TaylorInterrupt
+        {
+        - not TaylorInterrupt:->TaylorInterrupt
+        - else: ->TaylorInterrupt1
+        }
 *[How did you guess?]
     Thought about doing it myself last semester. But here we are.
     **[You ok?]
     **[Why didn't you?]
-- -> TaylorInterrupt
+- {
+    - not TaylorInterrupt:->TaylorInterrupt
+    - else: ->TaylorInterrupt1
+    }
 
 
 === TaylorPong1 ===
@@ -133,6 +143,7 @@ Good choice.< To the other team> You heard my friend.
          -> TaylorPongEnd
 
 === TaylorPongEnd ===
+~NPCName = "Taylor"
 {pongScore >= 3: < You won. > Told you we'd crush it. Knew you had it in you. Imma go grab a refill.}
 {pongScore < 3: < You lost. > We could have played better. Good effort. Imma get another drink.}
 
@@ -187,10 +198,10 @@ Your mom still coming up this weekend? Would love to see her. Wanna grab dinner 
     *[It's Taylor's shot, Gabriela]
         ~ NPCName = "Gabriela"
         < Gabriela ignores you. >
-        ** [-Contine-]
+        ** [-Continue-]
             ~ NPCName = "Taylor"
  - She can't make it this weekend.
-    *[-Contine-]
+    *[-Continue-]
         ~NPCName = "Gabriela"
 - Aw, that's too bad. You usually call her on Sundays, right? What if I popped in to say hi to her?
     *[-Stay quiet-] ->TaylorUneasy
@@ -213,7 +224,7 @@ Your mom still coming up this weekend? Would love to see her. Wanna grab dinner 
 ~NPCName = "Gabriela"
 Anyways, come out with us later, ok? Not every night your girl turns 21. Gotta go. Text me, yeah? < She leaves with her friends. >
     *[-Continue-]-> TaylorPong2
-    ~NPCName = "Taylor"
+    
     
 
 === PongGame ===
@@ -230,6 +241,7 @@ Anyways, come out with us later, ok? Not every night your girl turns 21. Gotta g
 
 === TaylorDefault ===
 ~ talkedTaylor = true
+~NPCName = "Taylor"
 { 
     -TURNS_SINCE(->TaylorDefault) <= 0: < Taylor nods to you and lifts his solo cup. Before he can say anything, another partygoer cuts you off and acosts him. >
     -TURNS_SINCE(->TaylorDefault) >= 0: {~< Taylor looks up from scrolling on his phone and raises his chin in greeting. You look behind you see it was meant for someone else. > | < Taylor nods to you and lifts his solo cup. Before he can say anything, another partygoer cuts you off and acosts him. >}

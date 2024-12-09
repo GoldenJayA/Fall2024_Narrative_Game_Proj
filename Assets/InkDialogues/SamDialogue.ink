@@ -10,6 +10,7 @@ EXTERNAL quitDialogue()
 
 === SamIntro ===
 ~NPCName = "??"
+~introducedSam = true
 You're not an econ major are you?
     *[No...]
     *[What if I was?]
@@ -114,6 +115,7 @@ Stress, lack of focus, loosing sleep, they all have an easy fix. If you ever fin
 
 
 === SamDefault ===
+~NPCName = "Sam"
 < Sam just raises and eyebrow. You're unsure if it's an acknowledgement or a dismissal. >
     +[-Leave-]
     {quitDialogue()} 
