@@ -10,6 +10,10 @@ public class ManagerStrings : MonoBehaviour
     private GameObject stringPrefab;
     [SerializeField]
     List<RelationshipString> createdStrings = new List<RelationshipString>();
+    [SerializeField]
+    private AudioSource stringSoundMaker;
+    [SerializeField]
+    private AudioClip stringMake, allStringMake;
 
     int connectionScore;
 
@@ -34,6 +38,16 @@ public class ManagerStrings : MonoBehaviour
         
         createdStrings.Add(rString);
         rString.CreateFullString(from, to, createdStrings.Count - 1, 3, connectionScore);
+        if(createdStrings.Count == 5) 
+        {
+            stringSoundMaker.clip = allStringMake;
+            stringSoundMaker.Play();
+        }
+        else
+        {
+            stringSoundMaker.clip = stringMake;
+            stringSoundMaker.Play();
+        }
     }
 
     //Example for reading & keeping track of variables within the INK story.

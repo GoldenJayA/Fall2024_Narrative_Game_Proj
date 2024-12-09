@@ -6,9 +6,19 @@ using UnityEngine.SceneManagement;
 public class Menu : MonoBehaviour
 {
     public GameObject creditsObj;
+
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+        if(creditsObj != null )
+        {
+            creditsObj.SetActive( false );
+        }
+    }
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("Environment");
     }
 
     public void QuitGame()

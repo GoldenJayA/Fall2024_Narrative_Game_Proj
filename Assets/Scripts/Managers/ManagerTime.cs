@@ -73,11 +73,6 @@ public class ManagerTime : MonoBehaviour
             mins += "0";
         }
         mins += minutes;
-
-        if(hours < 10)
-        {
-            hrs += "0";
-        }
         hrs += hours + 9; //Start at 9 PM. Only need to display that time.
 
         UITimer.text =  hrs + ":" + mins;

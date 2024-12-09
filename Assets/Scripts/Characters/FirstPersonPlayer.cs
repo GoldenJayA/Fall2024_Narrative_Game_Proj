@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Ink.Runtime;
 using UnityEngine.EventSystems;
+using UnityEngine.Timeline;
 
 public class FirstPersonPlayer : Character
 {
@@ -17,6 +18,7 @@ public class FirstPersonPlayer : Character
     private Camera cam;
     [SerializeField]
     private GameObject relStringPoint;
+
 
     private float xRot = 0;
 
@@ -106,7 +108,7 @@ public class FirstPersonPlayer : Character
         //Make the String
         if (!isSequence)
         { 
-            MakeString?.Invoke(lastNPCStringPoint.transform, relStringPoint.transform); 
+            MakeString?.Invoke(lastNPCStringPoint.transform, relStringPoint.transform);
         }
     }
 
