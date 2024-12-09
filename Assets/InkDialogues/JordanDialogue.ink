@@ -11,7 +11,7 @@ EXTERNAL quitDialogue()
 
 === JordanStart ===
 ~NPCName = "??"
-< On a bench in the rear of backyard, someone sits not talking to anyone. You get closer and see they are cradling their phone in their lap and holding their solo cup between their teeth. They stare blankly into space. >
+< In the corner of the room, someone sits not talking to anyone. You get closer and see they are cradling their phone in their lap and holding their solo cup between their teeth. They stare blankly into space. >
     *[Can I sit?] -> jordanIntroduce
     *[Are you ok?] ->jordanIntroduce
     +[-Leave-] ->JordanStart
@@ -20,6 +20,7 @@ EXTERNAL quitDialogue()
 = jordanIntroduce
 < They hurriedly put their phone away. > Oh, hi. Didn’t think anyone else would find this spot.
     *[-Introduce yourself-]
+        ~NPCName = "Jordan"
         You looking for some quiet too? Have a seat. I'm Jordan by the way.
         **[Yeah, kinda overwhelmed]->overwhelmed
         **[You ok?] -> peoplewatching
@@ -112,6 +113,7 @@ Sure, why not? If you've overheard a worthy soundbite by the end of the night le
 
 === JordanDefault ===
 ~ talkedJordan = true
+~ NPCName = "Jordan"
 {~ Gotta go refill my drink. Come find me later, yeah? | Hold on, I just heard something incredible, gotta go write it down before I forget.}
 + [Leave]
     {quitDialogue()} 

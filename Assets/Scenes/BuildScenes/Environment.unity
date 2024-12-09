@@ -7627,8 +7627,8 @@ MonoBehaviour:
   lightsInside: {fileID: 632232332}
   player: {fileID: 1228608783}
   bff: {fileID: 1194524442}
-  anxLoss: {fileID: 0}
-  rowWin: {fileID: 0}
+  anxLoss: {fileID: 4900000, guid: 022b3d2ee58634e4c82d9715a4c05321, type: 3}
+  rowWin: {fileID: 4900000, guid: 3f4d98df970c5a54e97c4fa8a1438317, type: 3}
 --- !u!43 &1091513637
 Mesh:
   m_ObjectHideFlags: 0
@@ -12040,7 +12040,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Time:'
+  m_text: 99:99
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7bba43cc4ec5c6c4ca1a06ba7240f4fe, type: 2}
   m_sharedMaterial: {fileID: 5876769049553535233, guid: 7bba43cc4ec5c6c4ca1a06ba7240f4fe, type: 2}
@@ -12103,7 +12103,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -0.2892189, y: 0, z: 0.044685367, w: 0}
+  m_margin: {x: -0.2892189, y: 0, z: -16.462944, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
